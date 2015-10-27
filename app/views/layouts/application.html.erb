@@ -12,6 +12,8 @@
   <%# link_to is called a view helper, link_to is built-in with Rails. It
       generate an anchor HTML tag. %>
   <%= link_to("Hello", hello_path) %>
+  <%= link_to("Hello Jade", greeting_path({name: "Jade"}))  %>
+  <%= link_to("Hello Jade", greeting_path("Jade"))  %>
   <hr>
   <%= yield %>
 
