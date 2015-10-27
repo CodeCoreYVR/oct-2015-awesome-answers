@@ -30,6 +30,7 @@ gem 'coffee-rails', '~> 4.1.0'
 gem "faker" # if no version is specified it's going to use the latest from your
             # Ruby installation. If you don't have the gem installed, then it
             # will install the latest
+gem "cowsay"
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -49,7 +50,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-gem "awesome_print", group: :development
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -59,6 +60,11 @@ end
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
+
+  # we use the three gems below for a nicer Rails console display
+  gem "awesome_print"
+  gem "interactive_editor"
+  gem "hirb"
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
