@@ -9,8 +9,9 @@ Rails.application.routes.draw do
   # when using a symbol-like string within a url, this means that it's a variable part of the url (could be anything)
   get({"/greeting/:name" => "welcome#greeting", as: :greeting})
 
-  get({"/questions/new" => "questions#new", as: :new_question})
-  post({"/questions" => "questions#create", as: :questions })
+  get({"/questions/new" => "questions#new",    as: :new_question})
+  post({"/questions"    => "questions#create", as: :questions })
+  get({"/questions/:id" => "questions#show",   as: :question})
 
 
 

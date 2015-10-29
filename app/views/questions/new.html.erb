@@ -12,13 +12,20 @@
   <%= submit_tag "Create Question" %>
 <% end %> -->
 
+<%= @q.errors.full_messages.join(", ") %>
+
 <%# form_for looks at the type of object that you give it, in this case Question
     and then automatically guesses the url assuming you followed Rails conventions
     so it assumes that you have questions_controller and if you pass it a new
     Question object it will submit it to `questions_path` by convention %>
-<%= form_for Question.new do |f| %>
+<%= form_for @q do |f| %>
   <div>
     <%= f.label(:title) %>
+    <%# this generates an input with a name attributes that is question[title]
+        Rails will give us the parameters for this form within the params Hash
+        as a value of "question" key. So the params Hash will look like:
+        {.."question"=>{"title"=>"my first title", "body"=>"my first body"}..} %>
+    <%#= f.text_field(:title, {value: params[:question][:title]}) %>
     <%= f.text_field(:title) %>
   </div>
   <div>
