@@ -1,0 +1,29 @@
+<h1>Create New Question</h1>
+
+<%# The form below won't work if it doesn't have authenticity token generated %>
+<!-- <form action="<%= questions_path %>" method="post">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <input type="submit" value="Create Question">
+</form> -->
+
+<%# this will automatically generate authenticity_token hidden field with us
+    with the proper value set %>
+<!-- <%= form_tag questions_path do %>
+  <%= submit_tag "Create Question" %>
+<% end %> -->
+
+<%# form_for looks at the type of object that you give it, in this case Question
+    and then automatically guesses the url assuming you followed Rails conventions
+    so it assumes that you have questions_controller and if you pass it a new
+    Question object it will submit it to `questions_path` by convention %>
+<%= form_for Question.new do |f| %>
+  <div>
+    <%= f.label(:title) %>
+    <%= f.text_field(:title) %>
+  </div>
+  <div>
+    <%= f.label(:body) %>
+    <%= f.text_area(:body) %>
+  </div>
+  <%= f.submit %>
+<% end %>

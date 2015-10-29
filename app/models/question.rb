@@ -32,7 +32,7 @@ class Question < ActiveRecord::Base
     if term == ""
       "You must enter a search term"
     else
-      # where(["title ILIKE :search_term OR body ILIKE :search_term", 
+      # where(["title ILIKE :search_term OR body ILIKE :search_term",
       #         {search_term: "%#{term}%"}])
       where(["title ILIKE ? OR body ILIKE ?", "%#{term}%", "%#{term}%"])
     end
