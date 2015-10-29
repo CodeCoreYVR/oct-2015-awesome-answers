@@ -40,4 +40,29 @@ class QuestionsController < ApplicationController
     @q = Question.find(params[:id])
     # default: render: views/questions/show.html.erb
   end
+
+  def edit
+    @q = Question.find params[:id]
+  end
+
+  def update
+    @q = Question.find params[:id]
+    question_params = params.require(:question).permit([:title, :body])
+    if @q.update(question_params)
+      redirect_to question_path(@q)
+    else
+      render :edit
+    end
+  end
+
+  def index
+    @questions = Question.recent_ten
+  end
+
+  def destroy
+    @q = Question.find params[:id]
+    @q.destroy
+    redirect_to questions_path
+  end
+
 end
