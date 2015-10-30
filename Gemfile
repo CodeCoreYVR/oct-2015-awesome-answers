@@ -27,6 +27,8 @@ gem 'coffee-rails', '~> 4.1.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 #gem 'therubyracer', platforms: :ruby
 
+gem "bootstrap-sass"
+
 gem "faker" # if no version is specified it's going to use the latest from your
             # Ruby installation. If you don't have the gem installed, then it
             # will install the latest

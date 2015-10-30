@@ -7,19 +7,22 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <a href="<%= root_path %>">Home</a>
-  <!-- <a href="<%= hello_path %>">Hello</a>
-  <%# link_to is called a view helper, link_to is built-in with Rails. It
-      generate an anchor HTML tag. %>
-  <%= link_to("Hello", hello_path) %>
-  <%= link_to("Hello Jade", greeting_path({name: "Jade"}))  %>
+  <div class="container">
+    <%= render "/layouts/nav" %>
 
-  <%= link_to("Hello Jade", greeting_path("Jade"))  %> -->
-  <%= link_to "New Question", new_question_path %>
-  <hr>
-    <%= flash[:notice] || flash[:alert] %>
-  <hr>
-  <%= yield %>
+    <% if flash[:notice] %>
+      <div class="alert alert-success">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <%= flash[:notice] %>
+      </div>
+    <% elsif flash[:alert] %>
+      <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <%= flash[:alert] %>
+      </div>
+    <% end %>
 
+    <%= yield %>
+  </div>
 </body>
 </html>
