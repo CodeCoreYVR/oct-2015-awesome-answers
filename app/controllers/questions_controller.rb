@@ -4,6 +4,11 @@
 # you can generate such controller by running:
 # bin/rails g controller questions
 class QuestionsController < ApplicationController
+  # before action will register a method (in this case it's called find_question)
+  # that will be executed before all actions unless you specify options such as:
+  # :except or :only
+  # before_action(:find_question, {except: [:index, :new, :create]})
+  before_action(:find_question, {only: [:show, :edit, :update, :destroy]})
 
   def new
     # the default behaviour of controller action is to render a template
@@ -16,17 +21,12 @@ class QuestionsController < ApplicationController
   end
 
   def create
-    # params[:question] #  "question"=>{"title"=>"abc", "body"=>"xyz"}
-    # Question.create({title: params[:question][:title],
-    #                  body:  params[:question][:body]})
-    # Mass assignment way:
-    question_params = params.require(:question).permit([:title, :body])
     @q = Question.new(question_params)
     if @q.save
       # render text: "Saved correctly!"
       # redirect_to(question_path({id: @q.id}))
       # can be shortened to:
-      redirect_to(question_path(@q))
+      redirect_to(question_path(@q), notice: "Question created!")
     else
       # render text: "Didn't save correctly! #{q.errors.full_messages.join(", ")}"
       render :new
@@ -36,20 +36,15 @@ class QuestionsController < ApplicationController
   # GET /questions/:id
   # you get access to the id in the URL from params[:id]
   def show
-    # finding the question by its id
-    @q = Question.find(params[:id])
     # default: render: views/questions/show.html.erb
   end
 
   def edit
-    @q = Question.find params[:id]
   end
 
   def update
-    @q = Question.find params[:id]
-    question_params = params.require(:question).permit([:title, :body])
     if @q.update(question_params)
-      redirect_to question_path(@q)
+      redirect_to question_path(@q), notice: "Question updated!"
     else
       render :edit
     end
@@ -60,9 +55,24 @@ class QuestionsController < ApplicationController
   end
 
   def destroy
-    @q = Question.find params[:id]
     @q.destroy
+    flash[:notice] = "Question deleted successfully"
     redirect_to questions_path
+  end
+
+  private
+
+  def question_params
+    # params[:question] #  "question"=>{"title"=>"abc", "body"=>"xyz"}
+    # Question.create({title: params[:question][:title],
+    #                  body:  params[:question][:body]})
+    # Mass assignment way:
+    params.require(:question).permit([:title, :body])
+  end
+
+  def find_question
+    # finding the question by its id
+    @q = Question.find params[:id]
   end
 
 end

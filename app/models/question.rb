@@ -48,7 +48,7 @@ class Question < ActiveRecord::Base
   end
 
   def set_default_values
-    self.view_count ||= 7
+    self.view_count ||= 0
   end
 
   def capitalize_title

@@ -17,6 +17,8 @@
   <%= link_to("Hello Jade", greeting_path("Jade"))  %> -->
   <%= link_to "New Question", new_question_path %>
   <hr>
+    <%= flash[:notice] || flash[:alert] %>
+  <hr>
   <%= yield %>
 
 </body>
