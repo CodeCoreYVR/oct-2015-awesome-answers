@@ -5,3 +5,19 @@
 <%= link_to("Delete", question_path(@q), {method: :delete,
                                           class: "btn btn-danger btn-sm",
                                           data:   {confirm: "Are you sure?"}}) %>
+<h2>Submit an Answer</h2>
+
+<%= @answer.errors.full_messages.join(", ") %>
+
+<%# form_for @answer, the action will be answers_path if @answer is not
+    persisted in the database (meaning it's just Answer.new).
+    if @answer is persisted, the action will be: answer_path(@answer)
+     %>
+<%#= form_for @answer, url: question_answers_path(@q) do |f| %>
+<%= form_for [@q, @answer] do |f| %>
+  <div class="form-group">
+    <%= f.label :body %>
+    <%= f.text_area :body, class: "form-control" %>
+  </div>
+  <%= f.submit class: "btn btn-primary" %>
+<% end %>

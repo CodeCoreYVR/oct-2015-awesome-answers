@@ -36,6 +36,9 @@ class QuestionsController < ApplicationController
   # GET /questions/:id
   # you get access to the id in the URL from params[:id]
   def show
+    # we insantiate an empty Answer object as we need a form on the show page
+    # to create an answer for our question
+    @answer = Answer.new
     # default: render: views/questions/show.html.erb
   end
 

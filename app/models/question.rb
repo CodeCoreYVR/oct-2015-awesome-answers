@@ -1,5 +1,13 @@
 class Question < ActiveRecord::Base
 
+  # when using has_many :answers we expect that we have a model named Answer
+  # we use the dependent option maintain referential integrity, we have two options:
+  # 1. use {dependent: :destroy} this will destroy all answers referecing a
+  #    a question just before deleting the question
+  # 2. use {dependent: :nullify} this will make `question_id` value for all
+  #    answers referencing a question `null` before deleting the question.
+  has_many(:answers, {dependent: :destroy})
+
   validates(:title, {presence:   true,
                      uniqueness: {message: "was used already"},
                      length:     {minimum: 3}})
