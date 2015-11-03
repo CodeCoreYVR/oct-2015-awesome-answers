@@ -4,7 +4,13 @@ Rails.application.routes.draw do
   # of controllers' existance.
 
   get "/index" => "welcome#index"
+  # as: :hey will give us two helper methods: hey_path and hey_url that we can
+  # use in our views or controllers files.
+  # the url/path helper generates a method that maps to the "url" portion of
+  # the routes regardless of the verb.
+  # in this case: hey_path will map to "/home"
   get({"/home"  => "welcome#index", as: :hey})
+  post({"/home"  => "welcome#hey"})
 
   # when using a symbol-like string within a url, this means that it's a variable part of the url (could be anything)
   get({"/greeting/:name" => "welcome#greeting", as: :greeting})
