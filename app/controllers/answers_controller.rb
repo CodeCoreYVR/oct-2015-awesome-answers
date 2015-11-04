@@ -16,4 +16,11 @@ class AnswersController < ApplicationController
       render "questions/show"
     end
   end
+
+  def destroy
+    answer = Answer.find params[:id]
+    answer.destroy
+    redirect_to question_path(answer.question), notice: "Answer deleted"
+  end
+
 end
