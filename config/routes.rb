@@ -3,6 +3,12 @@ Rails.application.routes.draw do
   # The routes files is basically a set of rules. The routes file isn't aware
   # of controllers' existance.
 
+  resources :users, only: [:new, :create]
+
+  resources :sessions, only: [:new, :create] do
+    delete :destroy, on: :collection
+  end
+
   get "/index" => "welcome#index"
   # as: :hey will give us two helper methods: hey_path and hey_url that we can
   # use in our views or controllers files.

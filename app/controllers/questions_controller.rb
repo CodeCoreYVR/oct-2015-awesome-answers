@@ -11,6 +11,8 @@ class QuestionsController < ApplicationController
   before_action(:find_question, {only: [:show, :edit, :update, :destroy]})
 
   def new
+    authenticate_user
+
     # the default behaviour of controller action is to render a template
     # within a folder with the same controller name. Using the format/templating
     # language used. In this case we're using the default format which is HTML
