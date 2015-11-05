@@ -8,6 +8,8 @@ class Question < ActiveRecord::Base
   #    answers referencing a question `null` before deleting the question.
   has_many(:answers, {dependent: :destroy})
 
+  belongs_to :user
+
   validates(:title, {presence:   true,
                      uniqueness: {message: "was used already"},
                      length:     {minimum: 3}})

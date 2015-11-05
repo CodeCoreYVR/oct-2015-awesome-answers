@@ -4,14 +4,16 @@
 # you can generate such controller by running:
 # bin/rails g controller questions
 class QuestionsController < ApplicationController
+  before_action :authenticate_user, except: [:index, :show]
+
   # before action will register a method (in this case it's called find_question)
   # that will be executed before all actions unless you specify options such as:
   # :except or :only
   # before_action(:find_question, {except: [:index, :new, :create]})
   before_action(:find_question, {only: [:show, :edit, :update, :destroy]})
 
+
   def new
-    authenticate_user
 
     # the default behaviour of controller action is to render a template
     # within a folder with the same controller name. Using the format/templating
@@ -23,7 +25,8 @@ class QuestionsController < ApplicationController
   end
 
   def create
-    @q = Question.new(question_params)
+    @q      = Question.new(question_params)
+    @q.user = current_user
     if @q.save
       # render text: "Saved correctly!"
       # redirect_to(question_path({id: @q.id}))
