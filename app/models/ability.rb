@@ -13,6 +13,14 @@ class Ability
       user == q.user
     end
 
+    can :manage, Answer do |a|
+      user == a.user
+    end
+
+    can :destroy, Answer do |a|
+      user == a.question.user
+    end
+
     # Define abilities for the passed in user here. For example:
     #
     #   user ||= User.new # guest user (not logged in)

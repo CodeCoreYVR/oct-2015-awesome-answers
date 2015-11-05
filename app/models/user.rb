@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
   # attr_accessor :hello
 
   has_many :questions, dependent: :nullify
+  has_many :answers, dependent: :nullify
 
   validates :email, presence: true, uniqueness: true
 
