@@ -8,11 +8,15 @@
   </p>
 <% end %>
 
-<%#= link_to "Edit", edit_question_path({id: @q.id}) %>
-<%= link_to "Edit", edit_question_path(@q), class: "btn btn-info btn-sm" %>
-<%= link_to("Delete", question_path(@q), {method: :delete,
-                                          class: "btn btn-danger btn-sm",
-                                          data:   {confirm: "Are you sure?"}}) %>
+<% if can? :edit, @q  %>
+  <%#= link_to "Edit", edit_question_path({id: @q.id}) %>
+  <%= link_to "Edit", edit_question_path(@q), class: "btn btn-info btn-sm" %>
+<% end %>
+<% if can? :destroy, @q  %>
+  <%= link_to("Delete", question_path(@q), {method: :delete,
+                                            class: "btn btn-danger btn-sm",
+                                            data:   {confirm: "Are you sure?"}}) %>
+<% end %>
 <h2>Submit an Answer</h2>
 
 <%= @answer.errors.full_messages.join(", ") %>

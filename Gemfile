@@ -29,6 +29,8 @@ gem 'coffee-rails', '~> 4.1.0'
 
 gem "bootstrap-sass"
 
+gem 'cancancan', '~> 1.10'
+
 gem "faker" # if no version is specified it's going to use the latest from your
             # Ruby installation. If you don't have the gem installed, then it
             # will install the latest

@@ -12,6 +12,10 @@ class QuestionsController < ApplicationController
   # before_action(:find_question, {except: [:index, :new, :create]})
   before_action(:find_question, {only: [:show, :edit, :update, :destroy]})
 
+  # we usually use the word `authenticate` to refer to signing in or out with
+  # email and password. We use the word `authorize` to refer to enforcing
+  # permissions for specific actions.
+  before_action :authorize, only: [:edit, :update, :destroy]
 
   def new
 
@@ -48,6 +52,7 @@ class QuestionsController < ApplicationController
   end
 
   def edit
+    redirect_to root_path, alert: "Access denied." unless can? :edit, @q
   end
 
   def update
@@ -81,6 +86,10 @@ class QuestionsController < ApplicationController
   def find_question
     # finding the question by its id
     @q = Question.find params[:id]
+  end
+
+  def authorize
+    redirect_to root_path, alert: "Access denied!" unless can? :manage, @q
   end
 
 end
