@@ -29,6 +29,7 @@ gem 'coffee-rails', '~> 4.1.0'
 
 gem "bootstrap-sass"
 
+
 gem 'cancancan', '~> 1.10'
 
 gem "faker" # if no version is specified it's going to use the latest from your
@@ -62,6 +63,10 @@ group :development, :test do
 end
 
 group :development do
+  gem "quiet_assets"
+
+  gem "rails-erd"
+
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
 

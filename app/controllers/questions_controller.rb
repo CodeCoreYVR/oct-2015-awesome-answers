@@ -6,6 +6,8 @@
 class QuestionsController < ApplicationController
   before_action :authenticate_user, except: [:index, :show]
 
+  # layout "special"
+
   # before action will register a method (in this case it's called find_question)
   # that will be executed before all actions unless you specify options such as:
   # :except or :only
@@ -49,6 +51,8 @@ class QuestionsController < ApplicationController
     # to create an answer for our question
     @answer = Answer.new
     # default: render: views/questions/show.html.erb
+
+    # render :show, layout: "special"
   end
 
   def edit
