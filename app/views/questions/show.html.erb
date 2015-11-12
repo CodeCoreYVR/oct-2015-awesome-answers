@@ -18,6 +18,12 @@
                                             class: "btn btn-danger btn-sm",
                                             data:   {confirm: "Are you sure?"}}) %>
 <% end %>
+
+<%= link_to "Like", question_likes_path(@q), class: "btn btn-info btn-sm",
+                    method: :post %>
+
+Liked: <%= pluralize(@q.likes.count, "time") %>
+
 <h2>Submit an Answer</h2>
 
 <%= @answer.errors.full_messages.join(", ") %>

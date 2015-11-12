@@ -22,6 +22,15 @@ Rails.application.routes.draw do
   get({"/greeting/:name" => "welcome#greeting", as: :greeting})
 
   resources :questions do
+
+    resources :answers
+    # Avoid doing this:
+    # resources :answers do
+    #   resources :comments
+    # end
+
+    resources :likes, only: [:create, :destroy]
+
     # # this will generate a route that is:
     # # /questions/search
     # # it will automatically give it a path helper: search_questions_path
@@ -40,7 +49,10 @@ Rails.application.routes.draw do
     # this makes all the answers routes nested within the `questions` so all
     # the standard answers urls will be prepended with:
     # /questions/:question_id
-    resources :answers
+  end
+
+  resources :answers, only: [:index] do
+    resources :comments
   end
 
 

@@ -8,6 +8,10 @@ class Question < ActiveRecord::Base
   #    answers referencing a question `null` before deleting the question.
   has_many(:answers, {dependent: :destroy})
 
+  has_many :likes, dependent: :destroy
+  # has_many :users, through: :likes
+  has_many :liking_users, through: :likes, source: :user
+
   belongs_to :user
 
   validates(:title, {presence:   true,
