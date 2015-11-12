@@ -52,6 +52,15 @@ class Question < ActiveRecord::Base
     end
   end
 
+  def liked_by?(user)
+    # likes.find_by_user_id(user.id).present?
+    like_for(user).present?
+  end
+
+  def like_for(user)
+    likes.find_by_user_id(user.id)
+  end
+
   private
 
   # this is a custom validation method

@@ -19,9 +19,14 @@
                                             data:   {confirm: "Are you sure?"}}) %>
 <% end %>
 
-<%= link_to "Like", question_likes_path(@q), class: "btn btn-info btn-sm",
-                    method: :post %>
 
+<% if user_signed_in? && @q.liked_by?(current_user) %>
+  <%= link_to fa_icon("thumbs-up"), question_like_path(@q, @q.like_for(current_user)),
+                    method: :delete, class: "icon-big" %>
+<% else %>
+  <%= link_to fa_icon("thumbs-o-up"), question_likes_path(@q), class: "icon-big",
+                      method: :post %>
+<% end %>
 Liked: <%= pluralize(@q.likes.count, "time") %>
 
 <h2>Submit an Answer</h2>
