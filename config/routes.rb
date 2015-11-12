@@ -31,6 +31,8 @@ Rails.application.routes.draw do
 
     resources :likes, only: [:create, :destroy]
 
+    resources :favourites, only: [:create, :destroy]
+
     # # this will generate a route that is:
     # # /questions/search
     # # it will automatically give it a path helper: search_questions_path

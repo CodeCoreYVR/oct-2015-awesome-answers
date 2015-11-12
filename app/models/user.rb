@@ -10,6 +10,9 @@ class User < ActiveRecord::Base
   has_many :likes, dependent: :destroy
   has_many :liked_questions, through: :likes, source: :question
 
+  has_many :favourites, dependent: :nullify
+  has_many :favourite_questions, through: :favourites, source: :question
+
   validates :email, presence: true, uniqueness: true
 
   def full_name
