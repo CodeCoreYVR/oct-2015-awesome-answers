@@ -15,6 +15,9 @@ class Question < ActiveRecord::Base
   has_many :favourites, dependent: :destroy
   has_many :favouriting_users, through: :favourites, source: :user
 
+  has_many :taggings, dependent: :destroy
+  has_many :tags, through: :taggings
+
   belongs_to :user
 
   validates(:title, {presence:   true,

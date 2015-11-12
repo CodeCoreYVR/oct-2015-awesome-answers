@@ -85,7 +85,9 @@ class QuestionsController < ApplicationController
     # Question.create({title: params[:question][:title],
     #                  body:  params[:question][:body]})
     # Mass assignment way:
-    params.require(:question).permit([:title, :body])
+    params.require(:question).permit([:title, :body, {tag_ids: []}])
+    # {tag_ids: []} this permits that tag_ids contains an array of values
+    # instead of a single value.
   end
 
   def find_question

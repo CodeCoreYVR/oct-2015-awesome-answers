@@ -9,6 +9,13 @@
   </p>
 <% end %>
 
+<% if @q.tags.any? %>
+  Tagged with:
+  <% @q.tags.each do |tag| %>
+    <div class="label label-primary"><%= tag.name %></div>
+  <% end %>
+<% end %>
+
 <% if can? :edit, @q  %>
   <%#= link_to "Edit", edit_question_path({id: @q.id}) %>
   <%= link_to "Edit", edit_question_path(@q), class: "btn btn-info btn-sm" %>
