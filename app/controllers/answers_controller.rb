@@ -13,7 +13,7 @@ class AnswersController < ApplicationController
     @answer.question = @q
     # byebug
     if @answer.save
-      AnswersMailer.notify_question_owner(@answer).deliver_now
+      AnswersMailer.notify_question_owner(@answer).deliver_later
       # redirect_to(question_path(q), {notice: "Answer created successfully!"})
       redirect_to question_path(@q), notice: "Answer created successfully!"
     else

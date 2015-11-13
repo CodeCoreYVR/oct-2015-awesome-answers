@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   # The routes files is basically a set of rules. The routes file isn't aware
   # of controllers' existance.
 
+  match "/delayed_job" => DelayedJobWeb, :anchor => false, via: [:get, :post]
+
   resources :users, only: [:new, :create]
 
   resources :sessions, only: [:new, :create] do

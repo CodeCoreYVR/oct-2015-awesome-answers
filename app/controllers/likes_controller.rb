@@ -8,6 +8,7 @@ class LikesController < ApplicationController
     like.question = question
     like.user     = current_user
     if like.save
+      LikesMailer.notify_question_owner(like).deliver_later
       redirect_to question_path(question), notice: "Thanks for liking!"
     else
       redirect_to question_path(question), alert: "Can't like! Liked already?"

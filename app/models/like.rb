@@ -5,4 +5,8 @@ class Like < ActiveRecord::Base
   # this will ensure that the question_id / user_id combo is unique
   # this is needed to ensure that the user can only like a question once.
   validates :question_id, uniqueness: {scope: :user_id}
+
+  def user_full_name
+    user.full_name
+  end
 end
