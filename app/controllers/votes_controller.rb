@@ -15,9 +15,20 @@ class VotesController < ApplicationController
   end
 
   def destroy
+    question = Question.find params[:question_id]
+    vote     = current_user.votes.find params[:id]
+    vote.destroy
+    redirect_to question_path(question), notice: "Vote removed!"
   end
 
   def update
+    vote = current_user.votes.find params[:id]
+    question = Question.find params[:question_id]
+    if vote.update vote_params
+      redirect_to question_path(question), notice: "vote updated"
+    else
+      redirect_to question_path(question), alert: "vote wasn't updated"
+    end
   end
 
   private

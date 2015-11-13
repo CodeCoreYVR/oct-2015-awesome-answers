@@ -78,6 +78,14 @@ class Question < ActiveRecord::Base
     favourites.find_by_user_id user.id
   end
 
+  def voted_on_by?(user)
+    vote_for(user).present?
+  end
+
+  def vote_for(user)
+    votes.find_by_user_id user.id
+  end
+
   private
 
   # this is a custom validation method
