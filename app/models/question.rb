@@ -18,6 +18,9 @@ class Question < ActiveRecord::Base
   has_many :taggings, dependent: :destroy
   has_many :tags, through: :taggings
 
+  has_many :votes, dependent: :destroy
+  has_many :voting_users, through: :votes, source: :user
+
   belongs_to :user
 
   validates(:title, {presence:   true,

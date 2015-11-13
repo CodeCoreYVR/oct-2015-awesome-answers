@@ -13,6 +13,9 @@ class User < ActiveRecord::Base
   has_many :favourites, dependent: :nullify
   has_many :favourite_questions, through: :favourites, source: :question
 
+  has_many :votes, dependent: :nullify
+  has_many :voted_questions, through: :votes, source: :question
+
   validates :email, presence: true, uniqueness: true
 
   def full_name
