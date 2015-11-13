@@ -7,24 +7,24 @@ class VotesController < ApplicationController
     vote          = current_user.votes.new vote_params
     vote.question = question
     if vote.save
-      redirect_to question_path(question), notice: "voted!"
+      redirect_to question, notice: "voted!"
     else
-      redirect_to question_path(question), alert: "can't vote!"
+      redirect_to question, alert: "can't vote!"
     end
   end
 
   def destroy
     vote     = current_user.votes.find params[:id]
     vote.destroy
-    redirect_to question_path(question), notice: "Vote removed!"
+    redirect_to question, notice: "Vote removed!"
   end
 
   def update
     vote = current_user.votes.find params[:id]
     if vote.update vote_params
-      redirect_to question_path(question), notice: "vote updated"
+      redirect_to question, notice: "vote updated"
     else
-      redirect_to question_path(question), alert: "vote wasn't updated"
+      redirect_to question, alert: "vote wasn't updated"
     end
   end
 
