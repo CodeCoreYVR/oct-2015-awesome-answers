@@ -5,7 +5,14 @@ class User < ActiveRecord::Base
   # attr_accessor :hello
 
   has_many :questions, dependent: :nullify
+
+  # this is the answers created by this user
   has_many :answers, dependent: :nullify
+
+  # this will give all the answers on the questions created by the user
+  # user -- created many -- > questions -- has many --> answers (could be
+  # created by this user or any other user)
+  has_many :questions_answers, through: :questions, source: :answers
 
   has_many :likes, dependent: :destroy
   has_many :liked_questions, through: :likes, source: :question
