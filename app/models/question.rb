@@ -86,6 +86,10 @@ class Question < ActiveRecord::Base
     votes.find_by_user_id user.id
   end
 
+  def vote_result
+    votes.select {|v| v.is_up? }.count - votes.select {|v| !v.is_up? }.count
+  end
+
   private
 
   # this is a custom validation method
