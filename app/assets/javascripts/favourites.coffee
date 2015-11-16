@@ -1,3 +1,9 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
+$ ->
+  capitalize = (word) ->
+    firstLetterCap = word.charAt(0).toUpperCase()
+    firstLetterCap + word.slice(1)
+
+  $("#input").on "keyup", ->
+    array = $(@).val().split(" ")
+    array = array.map (word) -> capitalize(word)
+    $("#output").html(array.join(" "))
