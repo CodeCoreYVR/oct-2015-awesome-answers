@@ -60,6 +60,8 @@ class QuestionsController < ApplicationController
   end
 
   def update
+    # this will make friendly id regenerate a slug for you
+    @q.slug = nil
     if @q.update(question_params)
       redirect_to question_path(@q), notice: "Question updated!"
     else
@@ -93,7 +95,10 @@ class QuestionsController < ApplicationController
 
   def find_question
     # finding the question by its id
-    @q = Question.find params[:id]
+    @q = Question.friendly.find params[:id]
+    # this will redirect the user to the new url (with new slug) if friednly
+    # id found the question using an old slug
+    # redirect_to @q if @q.slug != params[:id]
   end
 
   def authorize
