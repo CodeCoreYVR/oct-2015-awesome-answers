@@ -1,6 +1,62 @@
 // Place all the styles related to the answers controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import "app_variables";
+
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+     -moz-border-radius: $radius;
+      -ms-border-radius: $radius;
+          border-radius: $radius;
+}
+
+.box { @include border-radius(10px); }
+
+
 .delete-right {
-  float: right;
+  color: lighten($special-color, 20%);
+  float: $default-float;
+  @include border-radius(10px);
+}
+
+.edit-right {
+  color: darken($special-color, 20%);
+  float: $default-float;
+  @include border-radius(15px);
+}
+
+div.container img {
+  border: 2px solid;
+}
+
+div.container {
+  img {
+    border: 2px solid;
+  }
+  .well {
+    text-align: left;
+  }
+}
+
+
+.message {
+  border: 1px solid #ccc;
+  padding: 10px;
+  color: #333;
+}
+
+.success {
+  @extend .message;
+  border-color: green;
+}
+
+.error {
+  @extend .message;
+  border-color: red;
+}
+
+.warning {
+  @extend .message;
+  border-color: yellow;
 }
