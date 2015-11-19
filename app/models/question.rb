@@ -23,6 +23,8 @@ class Question < ActiveRecord::Base
 
   belongs_to :user
 
+  mount_uploader :image, ImageUploader
+
   validates(:title, {presence:   true,
                      uniqueness: {message: "was used already"},
                      length:     {minimum: 3}})
