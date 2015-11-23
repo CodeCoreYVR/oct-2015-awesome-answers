@@ -1,0 +1,7 @@
+<div class="well">
+  <%= answer.body %>
+  <% if can? :destroy, answer %>
+    <%= link_to "Delete", question_answer_path(@q, answer), method: :delete,
+                class: "btn btn-danger delete-right", data: {confirm: "Are you sure?"} %>
+  <% end %>
+</div>

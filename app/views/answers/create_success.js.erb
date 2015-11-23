@@ -1,0 +1,3 @@
+<%# j method escapes Javascript which means it will put a \ before every " %>
+$("#answers").prepend("<%= j(render('/answers/answer', {answer: @answer})) %>");
+$("#answer_body").val("");

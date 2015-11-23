@@ -88,18 +88,16 @@ Favourited: <%= pluralize(@q.favourites.count, "time") %>
     if @answer is persisted, the action will be: answer_path(@answer)
      %>
 <%#= form_for @answer, url: question_answers_path(@q) do |f| %>
-<%= simple_form_for [@q, @answer] do |f| %>
+<%= simple_form_for [@q, @answer], remote: true do |f| %>
   <%= f.input :body %>
-  <%= f.submit class: "btn btn-primary" %>
+  <%= f.submit class: "btn btn-primary", data: {disable_with: "Saving..."} %>
 <% end %>
 
 <h2>Answers</h2>
-<% @q.answers.each do |answer| %>
-  <div class="well">
-    <%= answer.body %>
-    <% if can? :destroy, answer %>
-      <%= link_to "Delete", question_answer_path(@q, answer), method: :delete,
-                  class: "btn btn-danger delete-right", data: {confirm: "Are you sure?"} %>
-    <% end %>
-  </div>
-<% end %>
+<%#= render @q.answers %>
+<div id="answers">
+  <% @q.answers.each do |answer| %>
+    <%# this will render _answer.html.erb inside views/answers folder %>
+    <%= render "/answers/answer", answer: answer %>
+  <% end %>
+</div>

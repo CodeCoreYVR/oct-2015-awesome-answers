@@ -12,13 +12,18 @@ class AnswersController < ApplicationController
     # this associates the @answer with question `q`
     @answer.question = @q
     # byebug
-    if @answer.save
-      AnswersMailer.notify_question_owner(@answer).deliver_later
-      # redirect_to(question_path(q), {notice: "Answer created successfully!"})
-      redirect_to question_path(@q), notice: "Answer created successfully!"
-    else
-      # flash[:alert] = @answer.errors.full_messages.join(", ")
-      render "questions/show"
+    respond_to do |format|
+      if @answer.save
+        AnswersMailer.notify_question_owner(@answer).deliver_later
+        # redirect_to(question_path(q), {notice: "Answer created successfully!"})
+        format.html { redirect_to question_path(@q), notice: "Answer created successfully!" }
+        # this will render views/answers/create_success.js.erb
+        format.js { render :create_success }
+      else
+        # flash[:alert] = @answer.errors.full_messages.join(", ")
+        format.html { render "questions/show" }
+        format.js  { render js: "alert('failure');" }
+      end
     end
   end
 

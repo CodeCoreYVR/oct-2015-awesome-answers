@@ -73,6 +73,12 @@ class QuestionsController < ApplicationController
     # QuestionsCleanupJob.perform_later
     Rails.logger.error ">>>>>>>>>> #{current_user}"
     @questions = Question.recent_ten
+    # Rails by default will render views/questions/index.html.erb
+    # respond_to do |format|
+    #   format.html { render }
+    #   format.json { render json: @questions.to_json }
+    #   format.xml  { render json: @questions.to_xml }
+    # end
   end
 
   def destroy
