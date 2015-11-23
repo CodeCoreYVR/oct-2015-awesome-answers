@@ -1,0 +1,4 @@
+ENV["email_user_name"]       = "answerawesome"
+ENV["email_password"]        = "Sup3r$ecret"
+ENV['aws_access_key_id']     = 'PUT_YOURS_HERE'
+ENV['aws_secret_access_key'] = 'PUT_YOURS_HERE'
