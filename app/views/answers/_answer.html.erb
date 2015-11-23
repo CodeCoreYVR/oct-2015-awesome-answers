@@ -1,7 +1,10 @@
-<div class="well">
+<div class="well" id="<%= dom_id(answer) %>">
   <%= answer.body %>
   <% if can? :destroy, answer %>
-    <%= link_to "Delete", question_answer_path(@q, answer), method: :delete,
-                class: "btn btn-danger delete-right", data: {confirm: "Are you sure?"} %>
+    <%= link_to "Delete", question_answer_path(@q, answer),
+                method: :delete,
+                class:  "btn btn-danger delete-right",
+                data:   {confirm: "Are you sure?", disable_with: "deleting..."},
+                remote: true %>
   <% end %>
 </div>

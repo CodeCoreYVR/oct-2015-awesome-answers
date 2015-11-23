@@ -1,3 +1,9 @@
 <%# j method escapes Javascript which means it will put a \ before every " %>
 $("#answers").prepend("<%= j(render('/answers/answer', {answer: @answer})) %>");
-$("#answer_body").val("");
+
+<%# we need to reset @answer to become Answer.new because @answer is now
+    persisted which means the form will submit a PATCH request instead of
+    POST request. We need the form to be a new answer form and not an update
+    answer form. %>
+<% @answer = Answer.new %>
+$("#new_answer").replaceWith("<%= j render 'form' %>");

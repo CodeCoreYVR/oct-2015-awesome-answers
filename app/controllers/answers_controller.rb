@@ -22,16 +22,19 @@ class AnswersController < ApplicationController
       else
         # flash[:alert] = @answer.errors.full_messages.join(", ")
         format.html { render "questions/show" }
-        format.js  { render js: "alert('failure');" }
+        format.js   { render :create_failure }
       end
     end
   end
 
   def destroy
-    answer = Answer.find params[:id]
-    redirect_to root_path, alert: "access denied!" unless can?(:destroy, answer)
-    answer.destroy
-    redirect_to question_path(answer.question), notice: "Answer deleted"
+    @answer = Answer.find params[:id]
+    redirect_to root_path, alert: "access denied!" unless can?(:destroy, @answer)
+    @answer.destroy
+    respond_to do |format|
+      format.html { redirect_to question_path(@answer.question), notice: "Answer deleted" }
+      format.js   { render } # this renders /views/answers/destroy.js.erb
+    end
   end
 
 end

@@ -1,0 +1,9 @@
+<%# form_for @answer, the action will be answers_path if @answer is not
+    persisted in the database (meaning it's just Answer.new).
+    if @answer is persisted, the action will be: answer_path(@answer)
+     %>
+<%#= form_for @answer, url: question_answers_path(@q) do |f| %>
+<%= simple_form_for [@q, @answer], remote: true do |f| %>
+  <%= f.input :body %>
+  <%= f.submit class: "btn btn-primary", data: {disable_with: "Saving..."} %>
+<% end %>
