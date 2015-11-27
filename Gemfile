@@ -31,6 +31,7 @@ gem "font-awesome-rails"
 
 gem "bootstrap-sass"
 
+gem 'rack-cors', :require => 'rack/cors'
 
 gem 'cancancan', '~> 1.10'
 
