@@ -53,6 +53,10 @@ class QuestionsController < ApplicationController
     # default: render: views/questions/show.html.erb
 
     # render :show, layout: "special"
+    respond_to do |format|
+      format.html { render }
+      format.json { render json: @q.to_json }
+    end
   end
 
   def edit
