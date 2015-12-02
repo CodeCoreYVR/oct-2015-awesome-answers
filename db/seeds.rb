@@ -19,3 +19,4 @@ tags.each do |tag|
 end
 
 print Cowsay::say("Created #{tags.length} tags!")
+AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password')

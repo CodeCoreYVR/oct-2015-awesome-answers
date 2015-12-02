@@ -13,5 +13,6 @@
  *= require questions
  *= require font-awesome
  *= require_tree .
+ *= stub active_admin
  *= require_self
  */

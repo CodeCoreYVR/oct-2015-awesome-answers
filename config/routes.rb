@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
   # The routes files is basically a set of rules. The routes file isn't aware
   # of controllers' existance.
 

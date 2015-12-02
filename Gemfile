@@ -33,6 +33,9 @@ gem "bootstrap-sass"
 
 gem 'rack-cors', :require => 'rack/cors'
 
+gem "devise"
+gem 'activeadmin', github: "activeadmin"
+
 gem 'cancancan', '~> 1.10'
 
 gem "faker" # if no version is specified it's going to use the latest from your

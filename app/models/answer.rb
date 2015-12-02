@@ -14,4 +14,8 @@ class Answer < ActiveRecord::Base
   belongs_to :user
 
   validates :body, presence: true
+
+  def display_name
+    body
+  end
 end
